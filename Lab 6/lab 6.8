@@ -1,0 +1,35 @@
+# Define the Time class
+class Time:
+    # Constructor to initialize hours, minutes, and seconds
+    def __init__(self, hours, minutes, seconds):
+        self.hours = hours
+        self.minutes = minutes
+        self.seconds = seconds
+    
+    # Overload the == operator to compare two Time objects
+    def __eq__(self, other):
+        if isinstance(other, Time):
+            return (self.hours == other.hours and 
+                    self.minutes == other.minutes and 
+                    self.seconds == other.seconds)
+        return False  # If the other object is not a Time instance, return False
+    
+    # Method to display time in the format "HH:MM:SS"
+    def __str__(self):
+        return f"{self.hours:02}:{self.minutes:02}:{self.seconds:02}"
+
+# Create two Time instances
+time1 = Time(10, 30, 45)
+time2 = Time(10, 30, 45)
+time3 = Time(9, 45, 30)
+
+# Test equality by comparing the Time instances
+print(f"Time1: {time1}")
+print(f"Time2: {time2}")
+print(f"Time3: {time3}")
+
+# Compare time1 and time2 (should be equal)
+print(f"Is time1 equal to time2? {time1 == time2}")  # True
+
+# Compare time1 and time3 (should not be equal)
+print(f"Is time1 equal to time3? {time1 == time3}")  # False
