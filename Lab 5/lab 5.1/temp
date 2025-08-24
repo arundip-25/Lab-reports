@@ -1,0 +1,29 @@
+class Book:
+    # Constructor to initialize title, author, and price
+    def __init__(self, title, author, price):
+        self.title = title
+        self.author = author
+        self.price = price
+    
+    # Method to display book information
+    def display_info(self):
+        print(f"Title: {self.title}")
+        print(f"Author: {self.author}")
+        print(f"Price: ${self.price}")
+    
+    # Method to update the book's price
+    def update_price(self, new_price):
+        self.price = new_price
+        print(f"The new price for '{self.title}' is ${self.price}")
+
+# Create a Book object with sample data
+book1 = Book("The Great Gatsby", "F. Scott Fitzgerald", 10.99)
+
+# Call display_info() method
+book1.display_info()
+
+# Update the price of the book
+book1.update_price(12.99)
+
+# Display updated information
+book1.display_info()
