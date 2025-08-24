@@ -1,0 +1,16 @@
+# Define the Book class
+class Book:
+    # Constructor to initialize title and author
+    def __init__(self, title, author):
+        self.title = title
+        self.author = author
+    
+    # Overload the __str__ method to return the desired string format
+    def __str__(self):
+        return f"\"{self.title}\" by {self.author}"
+
+# Create a Book instance
+book = Book("The Catcher in the Rye", "J.D. Salinger")
+
+# Print the Book instance (this will call the __str__ method)
+print(book)
