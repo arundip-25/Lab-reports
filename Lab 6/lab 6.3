@@ -1,0 +1,48 @@
+class BankAccount:
+    # Constructor to initialize account number and balance
+    def __init__(self, account_number, balance=0):
+        self.__account_number = account_number  # private attribute
+        self.__balance = balance  # private attribute
+    
+    # Method to deposit money into the account
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+            print(f"Deposited {amount}. New balance: {self.__balance}")
+        else:
+            print("Deposit amount must be positive.")
+    
+    # Method to withdraw money from the account
+    def withdraw(self, amount):
+        if amount > 0:
+            if self.__balance >= amount:
+                self.__balance -= amount
+                print(f"Withdrew {amount}. New balance: {self.__balance}")
+            else:
+                print("Insufficient funds.")
+        else:
+            print("Withdrawal amount must be positive.")
+    
+    # Method to get account details
+    def get_account_details(self):
+        print(f"Account Number: {self.__account_number}")
+        print(f"Current Balance: {self.__balance}")
+
+# Test the class by creating an account and performing deposit and withdrawal operations
+account = BankAccount("123456789", 50000)
+
+# Get account details
+account.get_account_details()
+
+# Deposit money
+account.deposit(10000)
+
+# Withdraw money
+account.withdraw(5000)
+
+# Try withdrawing more money than available (should show an error)
+account.withdraw(3000)
+
+# Get account details after transactions
+account.get_account_details()
+
