@@ -1,0 +1,113 @@
+import os
+from datetime import datetime
+
+# Function to read customers from the file
+def read_customers():
+    customers = {}
+    try:
+        with open("customers.txt", "r") as file:
+            lines = file.readlines()
+            for line in lines:
+                name, account_number, balance = line.strip().split(",")
+                customers[account_number] = {"name": name, "balance": float(balance)}
+    except FileNotFoundError:
+        print("Error: customers.txt file not found.")
+    except Exception as e:
+        print(f"Error reading customer data: {e}")
+    return customers
+
+# Function to update customers data to the file
+def update_customers(customers):
+    try:
+        with open("customers.txt", "w") as file:
+            for account_number, info in customers.items():
+                file.write(f"{info['name']},{account_number},{info['balance']}\n")
+    except Exception as e:
+        print(f"Error updating customer data: {e}")
+
+# Function to log transactions
+def log_transaction(account_number, transaction_type, amount):
+    try:
+        with open("transactions.txt", "a") as file:
+            timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            file.write(f"{timestamp} - {transaction_type}: ${amount} to Account {account_number}\n")
+    except Exception as e:
+        print(f"Error logging transaction: {e}")
+
+# Function to view balance
+def view_balance(customers, account_number):
+    if account_number in customers:
+        print(f"Account Number: {account_number}")
+        print(f"Customer Name: {customers[account_number]['name']}")
+        print(f"Balance: ${customers[account_number]['balance']}")
+    else:
+        print("Account not found.")
+
+# Function to deposit money
+def deposit(customers, account_number, amount):
+    if account_number in customers:
+        if amount > 0:
+            customers[account_number]["balance"] += amount
+            log_transaction(account_number, "Deposit", amount)
+            print(f"Deposit of ${amount} successful.")
+        else:
+            print("Invalid deposit amount.")
+    else:
+        print("Account not found.")
+    
+# Function to withdraw money
+def withdraw(customers, account_number, amount):
+    if account_number in customers:
+        if amount > 0:
+            if customers[account_number]["balance"] >= amount:
+                customers[account_number]["balance"] -= amount
+                log_transaction(account_number, "Withdrawal", amount)
+                print(f"Withdrawal of ${amount} successful.")
+            else:
+                print("Insufficient funds.")
+        else:
+            print("Invalid withdrawal amount.")
+    else:
+        print("Account not found.")
+
+# Main function to interact with the user
+def main():
+    customers = read_customers()
+    
+    while True:
+        print("\n--- Simple Banking System ---")
+        print("1. View Balance")
+        print("2. Deposit Money")
+        print("3. Withdraw Money")
+        print("4. Exit")
+        
+        choice = input("Enter your choice (1/2/3/4): ")
+        
+        if choice == "1":
+            account_number = input("Enter account number to view balance: ")
+            view_balance(customers, account_number)
+        elif choice == "2":
+            account_number = input("Enter account number to deposit into: ")
+            try:
+                amount = float(input("Enter deposit amount: "))
+                deposit(customers, account_number, amount)
+                update_customers(customers)
+            except ValueError:
+                print("Invalid amount entered. Please enter a valid number.")
+        elif choice == "3":
+            account_number = input("Enter account number to withdraw from: ")
+            try:
+                amount = float(input("Enter withdrawal amount: "))
+                withdraw(customers, account_number, amount)
+                update_customers(customers)
+            except ValueError:
+                print("Invalid amount entered. Please enter a valid number.")
+        elif choice == "4":
+            print("Exiting system. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+# Run the main program
+if __name__ == "__main__":
+    main()
