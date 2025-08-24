@@ -1,0 +1,42 @@
+# Define the Person class
+class Person:
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+    
+    # Method to display person details
+    def display_person(self):
+        return f"Name: {self.name}, Age: {self.age}"
+
+# Define the Address class
+class Address:
+    def __init__(self, street, ward_no, city):
+        self.street = street  # Initialize street
+        self.ward_no = ward_no  # Initialize ward number
+        self.city = city  # Initialize city
+    
+    # Method to display address details
+    def display_address(self):
+        return f"Street: {self.street}, Ward No: {self.ward_no}, City: {self.city}"
+
+# Define the Contact class
+class Contact:
+    def __init__(self, person, address):
+        self.person = person  # An instance of the Person class
+        self.address = address  # An instance of the Address class
+    
+    # Method to display full contact details
+    def display_contact(self):
+        person_details = self.person.display_person()
+        address_details = self.address.display_address()
+        return f"{person_details}\n{address_details}"
+
+# Create instances of Person and Address
+person = Person("Arundip Adhikari", 30)
+address = Address("Malarani", 6, "Arghakhanchi")
+
+# Create a Contact object that combines Person and Address
+contact = Contact(person, address)
+
+# Display the contact details
+print(contact.display_contact())
