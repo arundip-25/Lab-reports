@@ -1,0 +1,77 @@
+import os
+
+# Function to add a new contact to the file
+def add_contact():
+    name = input("Enter contact name: ")
+    phone = input("Enter phone number: ")
+    contact = f"{name},{phone}\n"
+    
+    try:
+        with open("contacts.txt", "a") as file:
+            file.write(contact)
+        print("Contact added successfully.")
+    except Exception as e:
+        print(f"Error adding contact: {e}")
+
+# Function to view all contacts in the file
+def view_contacts():
+    try:
+        with open("contacts.txt", "r") as file:
+            contacts = file.readlines()
+            if contacts:
+                print("\nAll Contacts:")
+                for contact in contacts:
+                    print(contact.strip())
+            else:
+                print("No contacts found.")
+    except FileNotFoundError:
+        print("contacts.txt file not found. Please add a contact first.")
+    except Exception as e:
+        print(f"Error reading contacts: {e}")
+
+# Function to search for a contact by name
+def search_contact():
+    name_query = input("Enter the name to search: ").lower()
+    
+    try:
+        with open("contacts.txt", "r") as file:
+            contacts = file.readlines()
+            found = False
+            for contact in contacts:
+                name, phone = contact.strip().split(',')
+                if name_query in name.lower():
+                    print(f"Found: {name} - {phone}")
+                    found = True
+            if not found:
+                print("No contacts found with that name.")
+    except FileNotFoundError:
+        print("contacts.txt file not found. Please add a contact first.")
+    except Exception as e:
+        print(f"Error searching contacts: {e}")
+
+# Main menu function
+def main():
+    while True:
+        print("\n--- Contact Book CLI ---")
+        print("1. Add New Contact")
+        print("2. View All Contacts")
+        print("3. Search for a Contact")
+        print("4. Exit")
+        
+        choice = input("Enter your choice (1/2/3/4): ")
+        
+        if choice == "1":
+            add_contact()
+        elif choice == "2":
+            view_contacts()
+        elif choice == "3":
+            search_contact()
+        elif choice == "4":
+            print("Exiting contact book. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.")
+
+# Run the main program
+if __name__ == "__main__":
+    main()
