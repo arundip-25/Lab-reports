@@ -1,0 +1,27 @@
+# Define the Vector class
+class Vector:
+    # Constructor to initialize x and y attributes
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+    
+    # Overloading the + operator to add two vectors
+    def __add__(self, other):
+        if isinstance(other, Vector):  # Ensure we're adding another Vector object
+            return Vector(self.x + other.x, self.y + other.y)
+        else:
+            raise TypeError("Operand must be of type 'Vector'")
+    
+    # Method to display vector details
+    def __str__(self):
+        return f"Vector({self.x}, {self.y})"
+
+# Create two Vector objects
+vector1 = Vector(2, 3)
+vector2 = Vector(4, 5)
+
+# Add the vectors using the overloaded + operator
+result_vector = vector1 + vector2
+
+# Display the result
+print(f"Result of adding {vector1} and {vector2} is {result_vector}")
