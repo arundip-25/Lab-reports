@@ -1,0 +1,21 @@
+class Student:
+    # Constructor to initialize name and marks
+    def __init__(self, name, marks):
+        self.name = name
+        self.marks = marks
+    
+    # Method to display student's details
+    def show_details(self):
+        print(f"Name: {self.name}")
+        print(f"Marks: {self.marks}")
+        print("-" * 30)  # Separator line for better readability
+
+# Creating three Student objects
+student1 = Student("Arundip Adhikari", 85)
+student2 = Student("Bandhan Tharu", 92)
+student3 = Student("Aditya Singh", 78)
+
+# Displaying the details of each student
+student1.show_details()
+student2.show_details()
+student3.show_details()
