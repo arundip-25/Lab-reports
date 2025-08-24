@@ -1,0 +1,28 @@
+# Base class Person
+class Person:
+    # Constructor to initialize name and age
+    def __init__(self, name, age):
+        self.name = name
+        self.age = age
+
+# Derived class Employee inheriting from Person
+class Employee(Person):
+    # Constructor to initialize name, age, employee_id, and salary
+    def __init__(self, name, age, employee_id, salary):
+        # Call the constructor of the base class Person
+        super().__init__(name, age)
+        self.employee_id = employee_id
+        self.salary = salary
+    
+    # Method to display employee details
+    def display_employee(self):
+        print(f"Name: {self.name}")
+        print(f"Age: {self.age}")
+        print(f"Employee ID: {self.employee_id}")
+        print(f"Salary: {self.salary}")
+
+# Create an instance of Employee
+employee = Employee("Arundip Adhikari", 30, "E12345", 75000)
+
+# Display employee details
+employee.display_employee()
