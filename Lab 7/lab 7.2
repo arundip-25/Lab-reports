@@ -1,0 +1,122 @@
+import numpy as np a=np.arange(15)
+a a.reshape(3,5) a.dtype.name
+ 
+a.itemsize a.size type(a)
+b=np.array([6,7,8]) b
+type(b) a=np.array([[1,24,4],[5,6,6]])
+a np.zeros((3,4))
+np.ones((5,6))
+
+np.empty((2,3))
+
+a=np.array([20,30,40,50]) b=np.arange(4)
+a,b b**2
+
+10*np.sin(a)
+
+A = np.array([[1, 1],
+[0, 1]])
+B = np.array([[2, 0],
+[3, 4]])
+A.dot(B)
+
+A@B
+
+rg=np.random.default_rng(1) a=rg.random((2,3))
+
+a.sum()
+
+a.min()
+
+a.max()
+
+a = np.arange(6) print(a)
+b = np.arange(12).reshape(4, 3)
+ 
+print(b)
+c = np.arange(24).reshape(2, 3, 4) print(c)
+
+b = np.arange(12).reshape(3, 4) b
+b = np.arange(12).reshape(3, 4) c=b.sum(axis=0)
+print(f"{c}") d=b.min(axis=1) print(f'{d}') b.cumsum(axis=1)
+
+B = np.arange(3) B
+
+
+a=np.exp(B) print(a) a=np.sqrt(B) print(a)
+C = np.array([2., -1., 4.])
+
+a=np.arange(10)**3 a
+
+a[2] a[2:5]
+a[:6:2]=1000
+a
+
+a=np.floor(10*rg.random((3,4))) a
+
+a.shape a.ravel() a.reshape(6,2) a.T a.reshape(6,-1)
+a=np.floor(10*rg.random((2,2)))
+ 
+a
+a = np.floor(10 * rg.random((2, 2))) print(a)
+b = np.floor(10 * rg.random((2, 2))) b
+
+v=np.vstack((a, b))
+h=np.hstack((a, b)) h,v
+a=np.floor(10,rg.random((2,12))) a
+
+np.hsplit(a, 3)
+np.hsplit(a, (3, 4))
+
+a = np.array([[ 0, 1, 2, 3],
+[ 4, 5, 6, 7],
+[ 8, 9, 10, 11]])
+b = a b is a
+print(a) def f(x):
+print(id(x))
+id(a) # id is a unique identifier of an object f(a)
+
+f(b)
+
+c = a.view() c
+
+c is a ,c.base is a
+
+
+
+c.flags.owndata
+c = c.reshape((2, 6)) c[0, 4] = 1234
+a
+
+d=a.copy() d
+
+d is a
+ 
+d.base is a
+
+a = np.arange(12)**2 a
+
+
+i = np.array([1, 1, 3, 8, 5]) a[i]
+
+j = np.array([[3, 4], [9, 7]])
+a = np.arange(12).reshape(3, 4)
+b = a > 4 b
+a[b]
+
+import numpy as np
+import matplotlib.pyplot as plt
+def mandelbrot(h, w, maxit=20, r=2):
+"""Returns an image of the Mandelbrot fractal of size (h,w).""" x = np.linspace(-2.5, 1.5, 4*h+1)
+y = np.linspace(-1.5, 1.5, 3*w+1) A, B = np.meshgrid(x, y)
+C = A + B*1j
+z = np.zeros_like(C)
+divtime = maxit + np.zeros(z.shape, dtype=int) for i in range(maxit):
+z = z**2 + C
+diverge = abs(z) > r	# who is diverging
+div_now = diverge & (divtime == maxit) # who is diverging now divtime[div_now] = i	# note when
+z[diverge] = r	# avoid diverging too much return divtime
+plt.clf() plt.imshow(mandelbrot(400, 400))
+
+
+
